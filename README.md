@@ -1,4 +1,4 @@
->>>
+# String Manipulation
 >>> string1 = "Don't give a fuck,"
 >>> string2 = " Just fuck it"
 >>> newstring = string1 + string2
