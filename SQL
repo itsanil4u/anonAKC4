@@ -1,1 +1,124 @@
+#Creating a Table#
+CREATE DATABASE IF NOT EXISTS sales;
+CREATE TABLE table_name
+(
+column_1 data_type constratints,
+.
+.
+.
+.
+column_n data_type constraints
+);
+CREATE TABLE sales
+(
+purchase_number INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+date_of_purchase DATE NOT NULL,
+customer_id INT,
+item_code VARCHAR(10) NOT NULL
+);
+DROP TABLE sales;
+#Primary Key#
+CREATE TABLE sales
+(
+purchase_number INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+date_of_purchase DATE NOT NULL,
+customer_id INT,
+item_code VARCHAR(10) NOT NULL
+PRIMARY KEY (purchase_number)
+);
+#Foreign Key#
+CREATE TABLE sales
+(
+purchase_number INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+date_of_purchase DATE NOT NULL,
+customer_id INT,
+item_code VARCHAR(10) NOT NULL
+PRIMARY KEY (purchase_number),
+FOREIGN KEY (customer_id) REFERENCES customers(customer_id) ON DELETE CASCADE
+);
+#How to use ALTER Key#
+CREATE TABLE sales
+(
+purchase_number INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+date_of_purchase DATE NOT NULL,
+customer_id INT,
+item_code VARCHAR(10) NOT NULL
+PRIMARY KEY (purchase_number)
+);
+ALTER TABLE sales
+ADD FOREIGN KEY (customer_id) REFERENCES customers(customer_id) ON DELETE CASCADE;
+ALTER TABLE sales
+DROP FOREIGN KEY sales_ibfk_1;
+#Unique Key#
+CREATE TABLE customers
+(
+customer_id INT PRIMARY KEY AUTO_INCREMENT,
+first_name VARCHAR(255),
+last_name VARCHAR(255),
+email_address VARCHAR(255),
+number_of_complaints INT
+PRIMARY KEY (customer_id)
+UNIQUE KEY (email_address)
+);
+(or)
+CREATE TABLE customers
+(
+customer_id INT PRIMARY KEY AUTO_INCREMENT,
+first_name VARCHAR(255),
+last_name VARCHAR(255),
+email_address VARCHAR(255),
+number_of_complaints INT
+PRIMARY KEY (customer_id)
+);
+ALTER TABLE customers
+ADD UNIQUE KEY (email_address);
+
+ALTER TABLE customers
+DROP INDEX email_address;
+#DEFAULT Constraint#
+
+CREATE TABLE customers
+(
+customer_id INT PRIMARY KEY AUTO_INCREMENT,
+first_name VARCHAR(255),
+last_name VARCHAR(255),
+email_address VARCHAR(255),
+number_of_complaints INT
+PRIMARY KEY (customer_id)
+);
+ALTER TABLE customers
+CHANGE COLUMN number_of_complaints number_of_complaints INT DEFAULT 0;
+
+INSERT INTO COLUMNS (first_name last_name gender)
+VALUES ('Peter' 'Figaro' 'M');
+
+ALTER TABLE customers
+ALTER COLUMN number_of_complaints DROP DEFAULT;
+
+#NOT NULL Constraint#
+
+CREATE TABLE companies
+(
+company_id INT AUTO_INCREMENT,
+headquarters_phone_number VARCHAR(255),
+company_name VARCHAR(255) NOT NULL,
+PRIMARY KEY (company_id)
+);
+ (or)
+ 
+CREATE TABLE companies
+(
+company_id INT AUTO_INCREMENT,
+headquarters_phone_number VARCHAR(255),
+company_name VARCHAR(255),
+PRIMARY KEY (company_id)
+);
+ALTER TABLE companies
+ALTER COLUMN company_name
+CHANGE COLUMN company_name company_name NOT NULL;
+
+#SELECT Statement#
+
+SELECT * FROM employees
+WHERE first_name = 'Denis" OR first_name = 'Elvis' AND gender = 'M';
 
