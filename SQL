@@ -122,3 +122,111 @@ CHANGE COLUMN company_name company_name NOT NULL;
 SELECT * FROM employees
 WHERE first_name = 'Denis" OR first_name = 'Elvis' AND gender = 'M';
 
+SELECT * FROM employees
+WHERE first_name = 'Denis' AND (gender = 'M' OR gender = 'F');   {AND > OR} - Operator Precedence
+
+#IN-NOT IN Statement#
+
+SELECT * FROM employees
+WHERE first_name IN ('Denis', 'Kathy', 'Mark', 'Nathan'); - #This code gives the names of the employees whose first names are 'Denis', 'Kathy', 'Mark', "Nathan'#
+#This code is the replacement of the code :
+SELECT * FROM employees
+WHERE first_name = 'Denis' OR first_name = 'Kathy' OR first_name = 'Mark' OR first_name = 'Nathan'; #
+
+SELECT * FROM employees
+WHERE first_name NOT IN ('Denis', 'Kathy', 'Mark', 'Nathan'); - #This code gives the names of the employees whose first names are not 'Denis', 'Kathy', 'Mark', "Nathan'#
+
+#LIKE NOT LIKE Statement#
+
+SELECT * FROM employees
+WHERE first_name LIKE ('Den%');
+#This code gives all the names that start with 'Den' regardless of the length of the name#
+SELECT * FROM employees
+WHERE first_name LIKE ('%Den');
+#This code gives all the names that end with 'Den' regardless of the length of the name#
+SELECT * FROM employees
+WHERE first_name LIKE ('Deni_');
+#This code gives all the names that start with 'Deni' with a single character after it #
+SELECT * FROM employees
+WHERE first_name NOT LIKE ('%Den');
+#This code gives all the names that does not end with 'Den' regardless of the length of the name#
+
+#BETWEEN AND Statement#
+
+SELECT * FROM employees
+WHERE hire_date BETWEEN '1990-01-01' AND '2000-01-01';
+#Refers to interval between the included values#
+
+SELECT * FROM employees
+WHERE hire_date NOT BETWEEN '1990-01-01' AND '2000-01-01';
+
+#NOT BETWEEN AND Statement refers to an intervalComposed of two parts :
+1. an interval below the first value included and
+2. second interval above the second value included#
+
+#IS NOT NULL-IS NULL Statement#
+
+SELECT * FROM employees
+WHERE first_name IS NOT NULL;
+#This code displays all the first name values which are not null#
+
+SELECT * FROM employees
+WHERE first_name NOT NULL;
+#This code displays all the first name values which are null#
+
+#SELECT DISTINCT Statement#
+
+SELECT gender
+FROM employees;
+#Refer to the values of a particular row#
+
+SELECT DISTINCT gender
+FROM employees;
+#Refer to the distinct values in a particular row#
+
+#COUNT() Statement#
+
+SELECT COUNT(emp_id)
+FROM employees;
+#Refers to number of employees in the database#
+
+SELECT COUNT(DISTINCT first_name)
+FROM employees;
+#Refers to number of distinct employee names in the database#
+
+#ORDER BY Statement#
+SELECT * FROM employees ORDER BY first_name;
+
+#GROUP BY Statement#
+
+SELECT first_name, COUNT(first_name) FROM employees GROUP BY first_name ORDER BY first_name DESC;
+
+#WHERE Vs HAVING Statement#
+
+SELECT first_name, COUNT(first_name) AS name_count
+FROM
+employees
+WHERE hire_date > '2000-01-01"
+GROUP BY first_name
+having COUNT(first_name) < 200
+ORDER BY first_name DESC;
+
+#LIMIT Statement#
+
+SELECT first_name, COUNT(first_name) AS name_count
+FROM
+employees
+WHERE hire_date > '2000-01-01"
+GROUP BY first_name
+having COUNT(first_name) < 200
+ORDER BY first_name DESC
+LIMIT 100;
+
+#INNER JOIN#
+
+SELECT m.dept_no m.emp_no d.dept_name
+FROM dept_manager_dup m
+INNER JOIN 
+dept_dup d ON m.dept_no = d.dept_no
+ORDER BY m.dept_no;
+
