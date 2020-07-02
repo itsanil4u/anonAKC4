@@ -272,6 +272,12 @@ gender = 'F'
 WHERE
 emp_id = 999901;
 
+#DELETE Statement#
+
+DELETE FROM employees
+WHERE
+emp_id = 999903;
+
 #INNER JOIN#
 
 SELECT m.dept_no m.emp_no d.dept_name
