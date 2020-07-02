@@ -278,6 +278,33 @@ DELETE FROM employees
 WHERE
 emp_id = 999903;
 
+#ROUND Statement#
+
+SELECT 
+ROUND(AVG(salary),2)
+FROM
+salaries;
+
+#Rounds up the values you to 2 decimal points#
+
+#IFNULL Statement#
+
+SELECT 
+dept_no
+IFNULL(dept_name,'Department name not provided') AS dept_name
+FROM
+departments_dup;
+
+#COALESCE Statement#
+
+SELECT 
+dept_no,
+dept_name,
+COALESCE(dept_manager, dept_name, 'N/A') AS dept_manager
+FROM
+departments_dup
+ORDER BY dept_no ASC;
+
 #INNER JOIN#
 
 SELECT m.dept_no m.emp_no d.dept_name
