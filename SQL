@@ -406,3 +406,14 @@ dept_manager m;
 
 #UNION Statement#
 
+#Seubqueries with IN nested inside WHERE#
+
+SELECT
+e.first_name, e.last_name
+FROM 
+employees e
+WHERE e.emp_no IN (SELECT dm.emp_no FROM dept_manager dm);
+
+#Employee numbers that can be found in the Department Manager Table#
+
+
