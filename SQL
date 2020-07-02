@@ -313,3 +313,30 @@ INNER JOIN
 dept_dup d ON m.dept_no = d.dept_no
 ORDER BY m.dept_no;
 
+#CROSS JOIN#
+
+SELECT
+dm.*, d.*
+FROM
+dept_managers dm
+CROSS JOIN
+departments d
+ORDER BY 
+dm.emp_no, d.dept_no;
+(or)
+SELECT
+dm.*, d.*
+FROM
+dept_managers dm,
+departments d
+ORDER BY 
+dm.emp_no, d.dept_no;
+(or)
+SELECT
+dm.*, d.*
+FROM
+dept_managers dm
+JOIN
+departments d
+ORDER BY 
+dm.emp_no, d.dept_no;
