@@ -371,6 +371,19 @@ FROM
 dept_manager 
 WHERE emp_no IN (SELECT emp_no FROM employees WHERE hire_date BETWEEN '1990-01-01' AND '1995-01-01');
 
+SQL Subqueries with EXISTS-NOT EXISTS nested inside WHERE - exercise
+Select the entire information for all employees whose job title is “Assistant Engineer”. 
+
+Hint: To solve this exercise, use the 'employees' table.
+
+SELECT
+*
+FROM
+employees e
+WHERE
+EXISTS (SELECT * FROM titles t WHERE t.emp_no = e.emp_no AND tiltle = 'Assistant Engineer');
+
+
 
 
 
