@@ -222,6 +222,56 @@ having COUNT(first_name) < 200
 ORDER BY first_name DESC
 LIMIT 100;
 
+#INSERT INTOI Statement#
+
+SELECT *
+FROM
+employees
+LIMIT 10;
+
+INSERT INTO
+employees
+(
+emp_id
+birth_date
+first_name
+last_name
+gender
+hire_date)
+VALUES
+(
+999901
+'1986-04-04'
+'John'
+'Smith'
+'M'
+'2011-01-01'
+);
+
+(or)
+
+INSERT INTO
+VALUES
+(
+999901
+'1986-04-04'
+'John'
+'Smith'
+'M'
+'2011-01-01'
+);
+
+#UPDATE Statement#
+
+UPDATE
+SET
+first_name = 'Stella'
+last_name = 'Parkinson'
+birth_date = '1990-12-31'
+gender = 'F'
+WHERE
+emp_id = 999901;
+
 #INNER JOIN#
 
 SELECT m.dept_no m.emp_no d.dept_name
