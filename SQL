@@ -426,6 +426,62 @@ WHERE
 EXISTS(SELECT * FROM dept_manager dm WHERE dm.emp_no = e.emp_no)
 ORDER BY emp_no;
 
+#SQL Subqueries nested in SELECT and FROM#
+
+SELECT A*
+(SELECT 
+e.emp_no AS employee_ID
+MIN(de.dept_no) AS department_code
+(SELECT
+emp_no
+FROM
+dept_manager
+WHERE
+emp_no = 110022) AS manager_id
+FROM
+employees e
+JOIN
+dept_emp de ON e.emp_no = de.emp_no
+WHERE e.emp_no <= 10020
+GROUP BY e.emp_no
+ORDER BY e.emp_no) AS A
+UNION
+SELECT B*
+(SELECT 
+e.emp_no AS employee_ID
+MIN(de.dept_no) AS department_code
+(SELECT
+emp_no
+FROM
+dept_manager
+WHERE
+emp_no = 110039) AS manager_id
+FROM
+employees e
+JOIN
+dept_emp de ON e.emp_no = de.emp_no
+WHERE e.emp_no > 10020
+GROUP BY e.emp_no
+ORDER BY e.emp_no
+LIMIT 20) AS B;
+
+#SELF JOIN Statement#
+
+SELECT DISTINCT
+e1.*
+FROM 
+emp_manager e1
+JOIN
+emp_manager e2 ON  e1.emp_no = e2.manager_no;
+
+#VIEW Statement#
+
+CREATE OR REPLACE VIEW v_dept_emp_latest_date AS
+SELECT emp_no, MAX(from_date) AS from_date, MAX(to_date) AS to_date
+FROM
+dept_emp
+GROUP BY emp_no;
+
 
 
 
